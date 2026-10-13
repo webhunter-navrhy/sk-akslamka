@@ -1,0 +1,120 @@
+{% extends "_base.html" %}
+{% import "_makra.html" as m with context %}
+{% set titulek = 'SLAMKA & Partners – advokátska kancelária Dolný Kubín' %}
+{% set cesta = '' %}
+{% set aktivna = '' %}
+{% block obsah %}
+<section class="uvod">
+  <div class="wrap uvod-mriezka">
+    <div class="uvod-text">
+      <p class="nadtitul">Rodinná advokátska kancelária · právne služby od roku 1992</p>
+      <h1>Zaručíme ochranu Vašich práv vo všetkých právnych odvetviach.</h1>
+    </div>
+    <div class="uvod-bok">
+      <p class="perex">Pomáhame obchodným spoločnostiam, podnikateľom aj jednotlivcom. Zo sídla v&nbsp;Dolnom Kubíne a&nbsp;z&nbsp;pracovísk po celom Slovensku.</p>
+      <p class="uvod-cta"><a class="tlacidlo" href="{{ url('kontakt') }}">Kontaktovať kanceláriu</a><a class="odkaz" href="#register">S&nbsp;čím Vám pomôžeme</a></p>
+    </div>
+  </div>
+<figure class="wrap uvod-foto">
+    {{ img('tim.jpg', 'Tím Advokátskej kancelárie SLAMKA & Partners pred drevenou stavbou', sizes='(min-width: 84rem) 80rem, 100vw') }}
+    <figcaption>Tím kancelárie – advokáti, koncipienti a spolupracovníci.</figcaption>
+  </figure>
+</section>
+
+<section class="sekcia" id="register">
+  <div class="wrap">
+    <div class="sekcia-hlava">
+      <h2>Register oblastí práva</h2>
+      <p>Vyberte oblasť, ktorá sa Vás týka. Ukážeme Vám, kto z&nbsp;kancelárie sa jej venuje.</p>
+    </div>
+    {{ m.register(data.oblasti, data.tim) }}
+    <p class="sekcia-dalej"><a class="odkaz" href="{{ url('nase-sluzby') }}">Všetky služby pre občanov a firmy</a></p>
+  </div>
+</section>
+
+<section class="sekcia sekcia-papier" id="kto-sme">
+  <div class="wrap">
+    <div class="kto-text">
+      <h2>Kto sme</h2>
+      <p class="velky">Sme skupina mladých a&nbsp;cieľavedomých právnikov, ktorá pracuje pod taktovkou kvalitných a&nbsp;skúsených advokátov. Spolu tvoríme rodinnú advokátsku kanceláriu s&nbsp;trojgeneračnou históriou.</p>
+      <p>Našu prácu neberieme len ako bežné povolanie – poznanie a&nbsp;ochranu práva považujeme za rodinné dedičstvo, ktorým môžeme slúžiť spoločnosti pri presadzovaní spravodlivosti.</p>
+      <p>Advokátska kancelária SLAMKA &amp; Partners s.r.o. vznikla v&nbsp;roku 2016 zlúčením dvoch tradičných advokátskych kancelárií JUDr. Róberta Slamku a&nbsp;JUDr. Antona Slamku, ktorí poskytovali právne služby od roku 1992. Pridal sa k&nbsp;nim ich dlhoročný koncipient JUDr. Pavol Vargaeštok.</p>
+      <div class="piliere">
+        <div><p class="margo-nadpis">Rýchlosť</p><p>Vďaka pracoviskám prakticky po celom Slovensku vieme byť klientom vždy blízko a&nbsp;okamžite reagovať na ich potreby.</p></div>
+        <div><p class="margo-nadpis">Kvalita</p><p>Rýchlosť nevylučuje kvalitu. Len kvalitne odvedená práca prináša výsledky.</p></div>
+        <div><p class="margo-nadpis">Diskrétnosť</p><p>Diskrétnosť a&nbsp;ochrana informácií sú pilierom našej práce. Vaše osobné a&nbsp;firemné údaje sú u&nbsp;nás pod ochranou.</p></div>
+      </div>
+      <div class="klienti">
+        <p class="margo-nadpis">Medzi našich klientov patria napríklad spoločnosti z&nbsp;oblastí</p>
+        <ul role="list">{% for k in data.sluzby.klienti_odvetvia %}<li>{{ k }}</li>{% endfor %}</ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sekcia" id="partneri">
+  <div class="wrap">
+    <div class="sekcia-hlava">
+      <h2>Partneri kancelárie</h2>
+      <p>Zakladatelia, ktorí za kanceláriou stoja od začiatku.</p>
+    </div>
+    <ul class="partneri" role="list">
+      {% for c in data.tim if c.skupina == 'partneri' %}
+      <li class="partner">
+        <a href="{{ url('o-nas') }}#{{ c.id }}">{{ img(c.foto, c.meno, sizes='(min-width: 64rem) 24rem, (min-width: 40rem) 45vw, 90vw', cls='portret') }}</a>
+        <h3>{{ c.meno }}</h3>
+        <p class="rola">{{ c.rola }}</p>
+        <p>{{ c.zameranie[:1]|upper }}{{ c.zameranie[1:] }}.</p>
+        {% if c.citat %}<blockquote>„{{ c.citat }}“</blockquote>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="tim-pas">
+      <p class="margo-nadpis">A ďalší členovia tímu</p>
+      <ul role="list">
+        {% for c in (data.tim|selectattr('skupina', 'equalto', 'pravnici')|list)[:4] %}
+        <li><a href="{{ url('o-nas') }}#{{ c.id }}">{{ img(c.mini, '', sizes='120px') }}<span><strong>{{ c.meno }}</strong><small>{{ c.rola }}</small></span></a></li>
+        {% endfor %}
+      </ul>
+      <a class="odkaz" href="{{ url('o-nas') }}">Celý tím a profily ({{ data.tim|length }})</a>
+    </div>
+  </div>
+</section>
+
+<section class="sekcia sekcia-znacka" id="rpvs">
+  <div class="wrap rpvs-mriezka">
+    <figure class="kniha">{{ img('kniha3.png', 'Obálka: Zákon o registri partnerov verejného sektora – komentár, Wolters Kluwer', sizes='16rem') }}</figure>
+    <div>
+      <h2>Register partnerov verejného sektora</h2>
+      <p class="velky">Ako oprávnená osoba zabezpečujeme prvozápis, zápis zmien aj výmaz v&nbsp;Registri partnerov verejného sektora, vrátane zastupovania pred Okresným súdom Žilina v&nbsp;konaní o&nbsp;kvalifikovanom podnete.</p>
+      <p>Viac ako 200 registrácií partnerov verejného sektora. Partner kancelárie JUDr. Pavol Vargaeštok je spoluautorom komentára k&nbsp;zákonu o&nbsp;registri partnerov verejného sektora (Wolters Kluwer, 2020).</p>
+      <p><a class="tlacidlo tlacidlo-obrys" href="{{ url('register-partnerov-verejneho-sektora') }}">Žiadosť o&nbsp;cenovú ponuku</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="sekcia" id="pracoviska">
+  <div class="wrap prac-mriezka">
+    <div>
+      <h2>Pracoviská po celom Slovensku</h2>
+      <p>Sídlo kancelárie je v&nbsp;Dolnom Kubíne. Klientom sme k&nbsp;dispozícii aj na pracoviskách v&nbsp;Ružomberku, Martine, Prešove, Košiciach a&nbsp;Michalovciach.</p>
+      <dl class="prac-zoznam">
+        {% for p in data.mapa.pracoviska %}<div{% if p.sidlo %} class="sidlo"{% endif %}><dt>{{ p.mesto }}{% if p.sidlo %} <small>sídlo</small>{% endif %}</dt><dd><a href="tel:{{ p.tel|replace(' ', '') }}">{{ p.tel }}</a></dd></div>{% endfor %}
+      </dl>
+    </div>
+    {{ m.mapa(data.mapa) }}
+  </div>
+</section>
+
+<section class="sekcia sekcia-kontakt" id="kontakt">
+  <div class="wrap kontakt-mriezka">
+    <div>
+      <h2>Neváhajte nás kontaktovať</h2>
+      <p>Stručne opíšte svoju situáciu. Ozveme sa Vám a&nbsp;dohodneme ďalší postup.</p>
+      <address>Advokátska kancelária SLAMKA &amp; Partners s.r.o.<br>Radlinského 1735/29, 026 01 Dolný Kubín</address>
+      <p><a href="tel:+421902502530">+421 902 502 530</a> <span class="pozn">pobočky západné a stredné Slovensko</span><br><a href="tel:+421908689521">+421 908 689 521</a> <span class="pozn">pobočka východné Slovensko</span><br><a href="mailto:info@akslamka.eu">info@akslamka.eu</a></p>
+    </div>
+    {{ m.formular() }}
+  </div>
+</section>
+{% endblock %}

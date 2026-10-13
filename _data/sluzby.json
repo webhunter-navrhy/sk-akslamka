@@ -1,0 +1,63 @@
+{
+ "obcania": [
+  "Vypracovanie právnych analýz a zmlúv, ich pripomienkovanie a posúdenie.",
+  "Dedenie a dedičské právo.",
+  "Vysporiadanie podielového a bezpodielového spoluvlastníctva.",
+  "Právne úkony týkajúce sa nadobúdania nehnuteľnosti, jej prevodu a správy.",
+  "Zastupovanie na súde a pred štátnymi orgánmi.",
+  "Pracovný pomer a pracovné právo.",
+  "Exekúcie a exekučné právo.",
+  "Spory týkajúce sa rodinného práva.",
+  "Vymáhanie pohľadávok.",
+  "Konkurz a oddlženie (osobný bankrot)."
+ ],
+ "firmy": [
+  "Komplexné poradenstvo a právne služby súvisiace s nariadením EÚ o ochrane osobných údajov (GDPR).",
+  "Komplexné služby oprávnenej osoby pri prvozápise, zápise zmien či výmaze v Registri partnerov verejného sektora.",
+  "Zakladanie spoločností, fúzie a akvizície, predaj podniku, likvidácie, konkurzy, zmeny formy spoločnosti, zakladanie družstiev.",
+  "Poradenstvo pri vstupe a podnikaní zahraničných investorov v Slovenskej republike.",
+  "Poradenstvo pri komunikácii so samosprávou a miestnou štátnou správou.",
+  "Poradenstvo pri riešení spotrebiteľských sporov.",
+  "Právne riešenie patentov, dizajnov, ochranných známok a autorského práva.",
+  "Založenie, správa a ukončenie živnosti.",
+  "Komplexné riešenie sporov, zastupovanie v správnych a súdnych konaniach.",
+  "Spisovanie, pripomienkovanie a poradenstvo k zmluvám o nehnuteľnostiach.",
+  "Príprava a pripomienkovanie zmlúv a komplexná zmluvná agenda.",
+  "Telekomunikačné právo, právo IT a ochrana údajov.",
+  "Právo v oblasti energetiky, potravinárstva, životného prostredia a odpadového hospodárstva.",
+  "Reštrukturalizácia spoločností a konkurz.",
+  "Poradenstvo pri vypracovaní a uzatváraní investičných zmlúv.",
+  "Súdne a mimosúdne vymáhanie pohľadávok.",
+  "Poradenstvo v oblasti pracovného práva a personalistiky.",
+  "Poradenstvo pri akvizíciách nehnuteľností na území Slovenskej republiky.",
+  "Poradenstvo v agrosektore a v oblasti poľovných revírov."
+ ],
+ "klienti_odvetvia": [
+  "ťažba plynu a ropy, energetika",
+  "nábytkársky priemysel",
+  "odevný priemysel",
+  "farmácia, zdravotníctvo a zdravotnícke pomôcky, hygiena",
+  "poľnohospodárstvo, európske fondy a dotácie",
+  "informačné technológie",
+  "stavebníctvo"
+ ],
+ "klienti_ini": [
+  "poľovnícke združenia",
+  "neziskové organizácie",
+  "občianske združenia",
+  "fondy",
+  "prvovýrobcovia",
+  "jedna z najväčších registrovaných cirkví v Slovenskej republike"
+ ],
+ "konzultanti": [
+  "daňoví poradcovia",
+  "audítori",
+  "geodeti",
+  "znalci, prekladatelia, tlmočníci",
+  "konzultanti",
+  "detektívi",
+  "IT odborníci",
+  "notári, exekútori",
+  "lekári"
+ ]
+}

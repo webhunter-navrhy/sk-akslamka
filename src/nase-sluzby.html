@@ -1,0 +1,52 @@
+{% extends "_base.html" %}
+{% import "_makra.html" as m with context %}
+{% set titulek = 'Služby – Advokátska kancelária SLAMKA & Partners' %}
+{% set popis = 'Občianske, obchodné, pozemkové, pracovné, rodinné, trestné a správne právo. Služby pre občanov aj pre spoločnosti a podnikateľov, RPVS a GDPR.' %}
+{% set cesta = 'nase-sluzby/' %}
+{% set aktivna = 'nase-sluzby' %}
+{% block obsah %}
+<section class="podstrana-hlava">
+  <div class="wrap">
+    <p class="nadtitul">Služby</p>
+    <h1>S&nbsp;čím Vám pomôžeme</h1>
+    <p class="perex">Vďaka mnohoročným skúsenostiam ponúkame klientom profesionálny prístup v&nbsp;riešení ich životných situácií v&nbsp;rôznych právnych oblastiach.</p>
+  </div>
+</section>
+<section class="sekcia sekcia-tesna">
+  <div class="wrap">
+    <div class="sekcia-hlava"><h2>Register oblastí práva</h2><p>Klik na oblasť ukáže, kto z&nbsp;kancelárie sa jej podľa svojho profilu venuje.</p></div>
+    {{ m.register(data.oblasti, data.tim, plny=True) }}
+  </div>
+</section>
+<section class="sekcia sekcia-papier">
+  <div class="wrap dva-zoznamy">
+    <div>
+      <h2 id="obcania">Pre občanov</h2>
+      <ul class="paragrafy" role="list">{% for s in data.sluzby.obcania %}<li>{{ s }}</li>{% endfor %}</ul>
+    </div>
+    <div>
+      <h2 id="firmy">Pre spoločnosti a&nbsp;podnikateľov</h2>
+      <ul class="paragrafy" role="list">{% for s in data.sluzby.firmy %}<li>{{ s }}</li>{% endfor %}</ul>
+    </div>
+  </div>
+</section>
+<section class="sekcia">
+  <div class="wrap kto-mriezka">
+    <div>
+      <h2>Rodinné firmy</h2>
+      <p class="velky">Riešenia pre rodinné firmy vo forme rodinného holdingu, ktorého funkciou je ochrana a&nbsp;správa jednotlivých aktív, najmä majetkových podielov v&nbsp;obchodných spoločnostiach, tak aby sa predchádzalo rizikám z&nbsp;podnikania.</p>
+      <p>Právne poradenstvo poskytujeme aj pre {{ data.sluzby.klienti_ini|join(', ') }}.</p>
+    </div>
+    <aside class="marginalia">
+      <p class="margo-nadpis">Spolupracujeme s</p>
+      <ul class="margo-zoznam" role="list">{% for k in data.sluzby.konzultanti %}<li>{{ k }}</li>{% endfor %}</ul>
+    </aside>
+  </div>
+</section>
+<section class="sekcia sekcia-kontakt">
+  <div class="wrap kontakt-mriezka">
+    <div><h2>Opíšte nám svoju situáciu</h2><p>Ozveme sa Vám a&nbsp;dohodneme ďalší postup.</p><p><a href="tel:+421902502530">+421 902 502 530</a><br><a href="mailto:info@akslamka.eu">info@akslamka.eu</a></p></div>
+    {{ m.formular() }}
+  </div>
+</section>
+{% endblock %}

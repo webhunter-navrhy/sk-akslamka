@@ -1,0 +1,42 @@
+{% extends "_base.html" %}
+{% import "_makra.html" as m with context %}
+{% set titulek = 'Register partnerov verejného sektora (RPVS) – SLAMKA & Partners' %}
+{% set popis = 'Zápis do registra partnerov verejného sektora a zoznamu hospodárskych subjektov. Oprávnená osoba, viac ako 200 registrácií, komplexné poradenstvo.' %}
+{% set cesta = 'register-partnerov-verejneho-sektora/' %}
+{% set aktivna = 'register-partnerov-verejneho-sektora' %}
+{% block obsah %}
+<section class="podstrana-hlava">
+  <div class="wrap rpvs-mriezka">
+    <figure class="kniha">{{ img('kniha3.png', 'Obálka: Zákon o registri partnerov verejného sektora – komentár, Wolters Kluwer', sizes='16rem') }}</figure>
+    <div>
+      <p class="nadtitul">RPVS · viac ako 200 registrácií</p>
+      <h1>Registrácia partnerov verejného sektora v&nbsp;rukách profesionálov</h1>
+      <p class="perex">Pre záujemcov a&nbsp;uchádzačov v&nbsp;procese verejného obstarávania zabezpečujeme zápis do registra partnerov verejného sektora aj do zoznamu hospodárskych subjektov, vrátane komplexného poradenstva.</p>
+    </div>
+  </div>
+</section>
+<section class="sekcia sekcia-tesna">
+  <div class="wrap kto-mriezka">
+    <div class="text-dlhy">
+      <h2>Kto sa musí registrovať</h2>
+      <p>Podľa zákona č. 315/2016 Z. z. o&nbsp;registri partnerov verejného sektora majú subjekty, ktoré prijímajú finančné prostriedky alebo iné plnenie, ktorého predmetom je majetok, práva k&nbsp;majetku alebo iné majetkové práva z&nbsp;verejných zdrojov nad zákonom stanovený limit, ako aj ďalšie zákonom určené osoby, povinnosť zapísať sa do registra partnerov verejného sektora. Tieto subjekty sú následne partnermi verejného sektora s&nbsp;jasne definovanými zákonnými povinnosťami.</p>
+      <p>Bez registrácie partner verejného sektora stráca prístup k&nbsp;verejným zdrojom aj možnosť úspešne sa o&nbsp;ne uchádzať.</p>
+      <h2>Kto môže zápis vykonať</h2>
+      <p>Zápis do registra a&nbsp;plnenie ďalších súvisiacich povinností musí zabezpečiť tzv. oprávnená osoba – advokát, notár, banka, pobočka zahraničnej banky, audítor alebo daňový poradca so sídlom alebo miestom podnikania v&nbsp;Slovenskej republike.</p>
+      <p>Naša advokátska kancelária ako oprávnená osoba poskytuje všetky služby súvisiace s&nbsp;registráciou a&nbsp;zabezpečuje všetky zákonné povinnosti partnerov verejného sektora vrátane kompletného právneho poradenstva, ako aj zastupovania pred Okresným súdom Žilina v&nbsp;konaní o&nbsp;kvalifikovanom podnete.</p>
+    </div>
+    <aside class="marginalia">
+      <p class="margo-nadpis">Komentár k&nbsp;zákonu</p>
+      <p>Partner JUDr. Pavol Vargaeštok je spoluautorom komentára k&nbsp;zákonu o&nbsp;registri partnerov verejného sektora (Wolters Kluwer, 7/2020).</p>
+      <p class="margo-nadpis">Venujú sa</p>
+      <p><a href="{{ url('o-nas') }}#vargaestok">JUDr. Pavol Vargaeštok</a><br><a href="{{ url('o-nas') }}#kristina">Mgr. Kristína Slamková Kratochvílová</a></p>
+    </aside>
+  </div>
+</section>
+<section class="sekcia sekcia-kontakt" id="ponuka">
+  <div class="wrap kontakt-mriezka">
+    <div><h2>Žiadosť o&nbsp;cenovú ponuku</h2><p>Máte záujem o&nbsp;nezáväznú cenovú ponuku? Po vyplnení formulára Vás budeme kontaktovať.</p><p>Otázky aj telefonicky: <a href="tel:+421902502530">+421 902 502 530</a> alebo <a href="tel:+421908689521">+421 908 689 521</a></p></div>
+    {{ m.formular(predmet_vyber=False) }}
+  </div>
+</section>
+{% endblock %}

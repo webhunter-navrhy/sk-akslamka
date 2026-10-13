@@ -1,0 +1,59 @@
+{
+ "slug": "sk-akslamka",
+ "nazev": "Advokátska kancelária SLAMKA & Partners s.r.o.",
+ "kratky": "SLAMKA & Partners",
+ "url": "https://webhunter-navrhy.github.io/sk-akslamka/",
+ "base": "/sk-akslamka/",
+ "lang": "sk",
+ "popis": "Rodinná advokátska kancelária z Dolného Kubína s pracoviskami v Ružomberku, Martine, Prešove, Košiciach a Michalovciach. Právne služby pre občanov aj firmy, RPVS a GDPR.",
+ "navrh": true,
+ "domena": "",
+ "og_image": "tim.jpg",
+ "logo": "img/logo.svg",
+ "theme_color": "#C1AA81",
+ "typ": "LegalService",
+ "ico": "50120000",
+ "kontakt": {
+  "email": "info@akslamka.eu",
+  "telefon": "+421 902 502 530",
+  "adresa": {
+   "ulice": "Radlinského 1735/29",
+   "psc": "026 01",
+   "mesto": "Dolný Kubín",
+   "zeme": "SK"
+  }
+ },
+ "oteviraci_doba": [],
+ "sameas": [
+  "https://www.facebook.com/akslamka/",
+  "https://www.instagram.com/ak.slamka.and.partners/"
+ ],
+ "cenove_rozpeti": "",
+ "formular": {
+  "endpoint": "",
+  "demo": true,
+  "predmet": "Správa z webu akslamka.eu"
+ },
+ "nav": [
+  {
+   "text": "Služby",
+   "href": "nase-sluzby"
+  },
+  {
+   "text": "O nás",
+   "href": "o-nas"
+  },
+  {
+   "text": "RPVS",
+   "href": "register-partnerov-verejneho-sektora"
+  },
+  {
+   "text": "Publikácie",
+   "href": "publikacie"
+  },
+  {
+   "text": "Kontakt",
+   "href": "kontakt"
+  }
+ ]
+}

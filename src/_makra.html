@@ -1,0 +1,70 @@
+{# Spoločné bloky: register oblastí práva, mapa pracovísk, formulár. #}
+{% macro register(oblasti, tim, plny=False) %}
+{% set ludia = {} %}{% for t in tim %}{% set _ = ludia.update({t.id: t}) %}{% endfor %}
+<div class="register{{ ' register-plny' if plny }}" data-register>
+  <ul class="register-zoznam" role="list">
+  {% for o in oblasti %}
+    <li class="heslo{{ ' je-aktivne' if loop.first }}{{ ' heslo-dalsie' if loop.index > 8 }}">
+      <button type="button" class="heslo-tl" aria-expanded="{{ 'true' if loop.first else 'false' }}" aria-controls="heslo-{{ loop.index }}">
+        <span class="heslo-nazov">{{ o.nazov }}</span><span class="heslo-vodic" aria-hidden="true"></span><span class="heslo-poc">{% if o.ludia %}{{ o.ludia|length }}&nbsp;{{ 'osoba' if o.ludia|length == 1 else ('osoby' if o.ludia|length < 5 else 'osôb') }}{% else %}kancelária{% endif %}</span>
+      </button>
+      <div class="heslo-panel" id="heslo-{{ loop.index }}"{% if not loop.first %} hidden{% endif %}>
+        <p class="heslo-panel-nadpis">{{ o.nazov }}</p>
+        {% if o.ludia %}
+        <p class="heslo-panel-uvod">Tejto oblasti sa venujú:</p>
+        <ul class="heslo-ludia" role="list">
+          {% for id in o.ludia %}{% set c = ludia[id] %}
+          <li><a href="{{ url('o-nas') }}#{{ c.id }}">
+            {{ img(c.mini, '', sizes='48px', eager=False) }}
+            <span><strong>{{ c.meno }}</strong><small>{{ c.rola }}</small></span>
+          </a>{% if c.tel %}<a class="heslo-tel" href="tel:{{ c.tel|replace(' ', '') }}">{{ c.tel }}</a>{% endif %}</li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p class="heslo-panel-uvod">Túto oblasť uvádza kancelária medzi svojimi službami. Napíšte nám a dohodneme, kto sa Vašej veci bude venovať.</p>
+        {% endif %}
+        <a class="odkaz" href="{{ url('kontakt') }}">Opísať svoju situáciu</a>
+      </div>
+    </li>
+  {% endfor %}
+  </ul>
+  <div class="register-bok" aria-live="polite"></div>
+  <button type="button" class="tlacidlo tlacidlo-obrys register-viac" aria-expanded="false">Ďalšie oblasti ({{ oblasti|length - 8 }})</button>
+</div>
+{% endmacro %}
+
+{% macro mapa(m) %}
+<div class="mapa">
+  <svg viewBox="0 0 {{ m.w }} {{ m.h }}" role="img" aria-label="Mapa Slovenska s pracoviskami kancelárie">
+    <path d="{{ m.d }}" class="mapa-sr"/>
+    {% for p in m.pracoviska %}
+    <g class="mapa-bod{{ ' sidlo' if p.sidlo }}" transform="translate({{ p.x }} {{ p.y }})">
+      <circle r="{{ 5 if p.sidlo else 3.6 }}"/>
+      {% set lab = {'Dolný Kubín': (-9, -7, 'end'), 'Martin': (-8, 3.5, 'end'), 'Ružomberok': (8, 12, 'start'), 'Prešov': (8, -5, 'start'), 'Košice': (8, 12, 'start'), 'Michalovce': (0, -9, 'middle')} %}{% set l = lab.get(p.mesto, (8, 3.5, 'start')) %}
+      <text x="{{ l[0] }}" y="{{ l[1] }}" text-anchor="{{ l[2] }}">{{ p.mesto }}</text>
+    </g>
+    {% endfor %}
+  </svg>
+</div>
+{% endmacro %}
+
+{% macro formular(predmet_vyber=True) %}
+<form class="formular" method="post" data-endpoint="{{ site.formular.endpoint }}" data-demo="{{ 1 if site.formular.demo or not site.formular.endpoint else 0 }}">
+  <div class="f-riadok">
+    <label>Meno a priezvisko <input name="meno" autocomplete="name" required></label>
+    <label>E-mail <input name="email" type="email" autocomplete="email" required></label>
+  </div>
+  <div class="f-riadok">
+    <label>Telefón <input name="telefon" type="tel" autocomplete="tel"></label>
+    {% if predmet_vyber %}<label>Pracovisko <select name="pracovisko">
+      {% for p in data.mapa.pracoviska %}<option>{{ p.mesto }}</option>{% endfor %}
+    </select></label>{% else %}<label>Spoločnosť / IČO <input name="spolocnost" autocomplete="organization"></label>{% endif %}
+  </div>
+  <label>Správa <textarea name="sprava" rows="5" required placeholder="Stručne opíšte, s čím potrebujete pomôcť."></textarea></label>
+  <div class="past" aria-hidden="true"><label>Nevypĺňať <input name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+  <input type="hidden" name="_subject" value="{{ site.formular.predmet }}">
+  <p class="f-suhlas">Odoslaním formulára súhlasíte so spracovaním osobných údajov.</p>
+  <button type="submit" class="tlacidlo">Odoslať správu</button>
+  <p class="formular-stav" role="status" aria-live="polite"></p>
+</form>
+{% endmacro %}

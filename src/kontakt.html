@@ -1,0 +1,45 @@
+{% extends "_base.html" %}
+{% import "_makra.html" as m with context %}
+{% set titulek = 'Kontakt – Advokátska kancelária SLAMKA & Partners, Dolný Kubín' %}
+{% set popis = 'Radlinského 1735/29, 026 01 Dolný Kubín. Pracoviská Ružomberok, Martin, Prešov, Košice, Michalovce. Tel. +421 902 502 530, info@akslamka.eu.' %}
+{% set cesta = 'kontakt/' %}
+{% set aktivna = 'kontakt' %}
+{% block obsah %}
+<section class="podstrana-hlava">
+  <div class="wrap">
+    <p class="nadtitul">Kontakt</p>
+    <h1>Neváhajte nás kontaktovať</h1>
+  </div>
+</section>
+<section class="sekcia sekcia-tesna">
+  <div class="wrap kontakt-mriezka">
+    <div class="kontakt-udaje">
+      <p class="margo-nadpis">Adresa</p>
+      <address>Advokátska kancelária<br>SLAMKA &amp; Partners s.r.o.<br>Radlinského 1735/29<br>026 01 Dolný Kubín<br>Slovenská republika</address>
+      <p class="margo-nadpis">Telefón</p>
+      <p><a href="tel:+421902502530">+421 902 502 530</a><br><span class="pozn">pobočky západné a&nbsp;stredné Slovensko</span></p>
+      <p><a href="tel:+421908689521">+421 908 689 521</a><br><span class="pozn">pobočka východné Slovensko</span></p>
+      <p class="margo-nadpis">E-mail</p>
+      <p><a href="mailto:info@akslamka.eu">info@akslamka.eu</a></p>
+    </div>
+    {{ m.formular() }}
+  </div>
+</section>
+<section class="sekcia sekcia-papier" id="pracoviska">
+  <div class="wrap prac-mriezka">
+    <div>
+      <h2>Pracoviská</h2>
+      <dl class="prac-zoznam">
+        {% for p in data.mapa.pracoviska %}<div{% if p.sidlo %} class="sidlo"{% endif %}><dt>{{ p.mesto }}{% if p.sidlo %} <small>sídlo</small>{% endif %}</dt><dd><a href="tel:{{ p.tel|replace(' ', '') }}">{{ p.tel }}</a></dd></div>{% endfor %}
+      </dl>
+    </div>
+    {{ m.mapa(data.mapa) }}
+  </div>
+</section>
+<section class="sekcia">
+  <div class="wrap fakturacne">
+    <div><p class="margo-nadpis">Registrácia</p><p>Obchodný register Okresného súdu Žilina, oddiel Sro, vložka 64772/L</p><p>IČO: 50 120 000<br>IČ DPH: SK 2120174067</p></div>
+    <div><p class="margo-nadpis">Bankové spojenie</p><p>Tatra banka, a.s.<br>IBAN: SK85 1100 0000 0029 4901 5478<br>IBAN: SK48 1100 0000 0029 4203 5927</p><p>VÚB, a.s.<br>IBAN: SK10 0200 0000 0013 2450 2757</p></div>
+  </div>
+</section>
+{% endblock %}

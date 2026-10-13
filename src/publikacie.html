@@ -1,0 +1,32 @@
+{% extends "_base.html" %}
+{% set titulek = 'Publikácie a blog – Advokátska kancelária SLAMKA & Partners' %}
+{% set popis = 'Komentáre k zákonom vydané vo Wolters Kluwer a odborné články advokátov kancelárie SLAMKA & Partners.' %}
+{% set cesta = 'publikacie/' %}
+{% set aktivna = 'publikacie' %}
+{% block obsah %}
+<section class="podstrana-hlava">
+  <div class="wrap">
+    <p class="nadtitul">Publikácie a&nbsp;blog</p>
+    <h1>Komentáre k&nbsp;zákonom a&nbsp;odborné články</h1>
+  </div>
+</section>
+<section class="sekcia sekcia-tesna">
+  <div class="wrap">
+    <ul class="knihy" role="list">
+      {% for p in data.publikacie %}
+      <li>{{ img(p.obr, 'Obálka publikácie: ' ~ p.nazov, sizes='14rem') }}<p class="rola">Wolters Kluwer · {{ p.vydanie }}</p><h2 class="h3">{{ p.nazov }}</h2><p>{{ p.autori }}</p></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+<section class="sekcia sekcia-papier">
+  <div class="wrap">
+    <div class="sekcia-hlava"><h2>Blog</h2></div>
+    <ul class="clanky" role="list">
+      {% for c in data.clanky %}
+      <li><p class="rola">{{ c.datum }} · {{ c.autor }}</p><h3><a href="{{ c.url }}" rel="noopener">{{ c.nazov }}</a></h3><p>{{ c.perex }}</p></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock %}

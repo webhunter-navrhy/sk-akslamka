@@ -1,0 +1,54 @@
+{% extends "_base.html" %}
+{% import "_makra.html" as m with context %}
+{% set titulek = 'O nás – tím Advokátskej kancelárie SLAMKA & Partners' %}
+{% set popis = 'Rodinná advokátska kancelária s trojgeneračnou históriou. Partneri, advokátski koncipienti a spolupracujúci advokáti v Dolnom Kubíne a po celom Slovensku.' %}
+{% set cesta = 'o-nas/' %}
+{% set aktivna = 'o-nas' %}
+{% macro profil(c) %}
+<article class="profil" id="{{ c.id }}">
+  {{ img(c.foto, c.meno, sizes='(min-width: 64rem) 18rem, (min-width: 40rem) 30vw, 60vw', cls='portret') }}
+  <div class="profil-text">
+    <h3>{{ c.meno }}</h3>
+    <p class="rola">{{ c.rola }}{% if c.zameranie %} · {{ c.zameranie }}{% endif %}</p>
+    {% if c.text %}{% for odst in c.text.split('\n') %}<p>{{ odst }}</p>{% endfor %}{% endif %}
+    {% if c.citat %}<blockquote>„{{ c.citat }}“</blockquote>{% endif %}
+    {% if c.email or c.tel %}<p class="profil-kontakt">{% if c.jazyky %}<span>Jazyky: {{ c.jazyky }}</span>{% endif %}{% if c.pracovisko %}<span>Pracovisko: {{ c.pracovisko }}</span>{% endif %}{% if c.email %}<a href="mailto:{{ c.email }}">{{ c.email }}</a>{% endif %}{% if c.tel %}<a href="tel:{{ c.tel|replace(' ', '') }}">{{ c.tel }}</a>{% endif %}</p>{% endif %}
+  </div>
+</article>
+{% endmacro %}
+{% block obsah %}
+<section class="podstrana-hlava">
+  <div class="wrap kto-mriezka">
+    <div>
+      <p class="nadtitul">O nás</p>
+      <h1>Rodinná kancelária s&nbsp;trojgeneračnou históriou</h1>
+      <p class="perex">Sme skupina mladých a&nbsp;cieľavedomých právnikov, ktorá pracuje pod taktovkou kvalitných a&nbsp;skúsených advokátov. Poznanie a&nbsp;ochranu práva považujeme za rodinné dedičstvo, ktorým môžeme slúžiť spoločnosti pri presadzovaní spravodlivosti.</p>
+    </div>
+    <aside class="marginalia">
+      <p class="margo-nadpis">1992</p><p>JUDr. Róbert Slamka a&nbsp;JUDr. Anton Slamka začínajú poskytovať právne služby.</p>
+      <p class="margo-nadpis">2016</p><p>Zlúčením ich dvoch kancelárií vzniká Advokátska kancelária SLAMKA &amp; Partners s.r.o., pridáva sa JUDr. Pavol Vargaeštok.</p>
+    </aside>
+  </div>
+</section>
+<section class="sekcia sekcia-tesna">
+  <div class="wrap">
+    <h2 class="skupina-nadpis">Partneri</h2>
+    {% for c in data.tim if c.skupina == 'partneri' %}{{ profil(c) }}{% endfor %}
+    <h2 class="skupina-nadpis">Právnici</h2>
+    {% for c in data.tim if c.skupina == 'pravnici' %}{{ profil(c) }}{% endfor %}
+    <h2 class="skupina-nadpis">Spolupracujúci advokáti</h2>
+    {% for c in data.tim if c.skupina == 'spolupracujuci' %}{{ profil(c) }}{% endfor %}
+    <h2 class="skupina-nadpis">Administratíva</h2>
+    {% for c in data.tim if c.skupina == 'administrativa' %}<article class="profil profil-maly" id="{{ c.id }}">{{ img(c.foto, c.meno, sizes='10rem', cls='portret') }}<div class="profil-text"><h3>{{ c.meno }}</h3><p class="rola">administratívna pracovníčka</p></div></article>{% endfor %}
+  </div>
+</section>
+<section class="sekcia sekcia-papier">
+  <div class="wrap kto-mriezka">
+    <div>
+      <h2>Konzultanti</h2>
+      <p class="velky">Pri poskytovaní právnych služieb kancelária úzko spolupracuje s&nbsp;viacerými externými konzultantmi a&nbsp;expertmi.</p>
+    </div>
+    <aside class="marginalia"><ul class="margo-zoznam" role="list">{% for k in data.sluzby.konzultanti %}<li>{{ k }}</li>{% endfor %}</ul></aside>
+  </div>
+</section>
+{% endblock %}

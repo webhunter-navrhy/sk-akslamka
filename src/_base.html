@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ titulek or site.nazev }}</title>
+<meta name="description" content="{{ popis or site.popis }}">
+{% if site.navrh or noindex %}<meta name="robots" content="noindex, nofollow">{% endif %}
+<meta name="theme-color" content="{{ site.theme_color }}">
+<link rel="canonical" href="{{ site.url }}{{ cesta or '' }}">
+<link rel="icon" href="{{ base }}favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="sk_SK">
+<meta property="og:title" content="{{ titulek or site.nazev }}">
+<meta property="og:description" content="{{ popis or site.popis }}">
+<meta property="og:url" content="{{ site.url }}{{ cesta or '' }}">
+{% if og_url %}<meta property="og:image" content="{{ og_url }}">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">{% endif %}
+<link rel="preload" href="{{ base }}fonts/EBGaramond-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ asset('css/fonts.css') }}">
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+{% block head %}{% endblock %}
+{% if jsonld %}<script type="application/ld+json">{{ jsonld|safe }}</script>{% endif %}
+</head>
+<body>
+<a class="skip" href="#obsah">Preskočiť na obsah</a>
+<div class="zahlavie-riadok">
+  <div class="wrap">
+    <p>Advokátska kancelária <span class="zlom">· Dolný Kubín · Ružomberok · Martin · Prešov · Košice · Michalovce</span></p>
+    <p class="zahlavie-kontakt"><a href="tel:+421902502530">+421 902 502 530</a><a href="mailto:{{ site.kontakt.email }}">{{ site.kontakt.email }}</a></p>
+  </div>
+</div>
+<header class="hlavicka">
+  <div class="wrap">
+    <a href="{{ url('') }}" class="logo"><img src="{{ base }}{{ site.logo }}" alt="{{ site.nazev }}" width="226" height="48"></a>
+    <a class="zavolat" href="tel:+421902502530">Zavolať</a>
+    <button class="burger" aria-expanded="false" aria-controls="menu"><span></span><span class="vh">Menu</span></button>
+    <nav id="menu" aria-label="Hlavné menu">
+      {% for n in site.nav %}<a href="{{ url(n.href) }}"{% if aktivna == n.href %} aria-current="page"{% endif %}{% if loop.last %} class="nav-cta"{% endif %}>{{ n.text }}</a>{% endfor %}
+    </nav>
+  </div>
+</header>
+<main id="obsah">
+{% block obsah %}{% endblock %}
+</main>
+<footer class="paticka">
+  <div class="wrap">
+    <div class="pat-znacka">
+      <img src="{{ base }}img/logo-light.svg" alt="{{ site.nazev }}" width="226" height="48" loading="lazy">
+      <address>Radlinského 1735/29<br>026 01 Dolný Kubín<br>Slovenská republika</address>
+      <p><a href="tel:+421902502530">+421 902 502 530</a><br><a href="mailto:{{ site.kontakt.email }}">{{ site.kontakt.email }}</a></p>
+    </div>
+    <nav class="pat-mapa" aria-label="Mapa stránky">
+      <p class="pat-nadpis">Mapa stránky</p>
+      <a href="{{ url('') }}">Domov</a>
+      {% for n in site.nav %}<a href="{{ url(n.href) }}">{{ n.text }}</a>{% endfor %}
+    </nav>
+    <div class="pat-info">
+      <p class="pat-nadpis">Biznis Klub</p>
+      <p>Advokátska kancelária SLAMKA &amp; Partners s.r.o. je členom Biznis Klubu konzervatívneho denníka Postoj.</p>
+      <p class="pat-soc"><a href="https://www.facebook.com/akslamka/" rel="noopener">Facebook</a><a href="https://www.instagram.com/ak.slamka.and.partners/" rel="noopener">Instagram</a></p>
+    </div>
+  </div>
+  <div class="wrap pat-spodok">
+    <p>© Advokátska kancelária SLAMKA &amp; Partners s.r.o. · IČO 50 120 000 · Obchodný register Okresného súdu Žilina, oddiel Sro, vložka 64772/L</p>
+    <p class="pat-navrh">Náhľad nového webu od WebHunter s.r.o. Texty, fotografie a údaje pochádzajú zo súčasného webu akslamka.eu.</p>
+  </div>
+</footer>
+<script src="{{ asset('js/main.js') }}" defer></script>
+</body>
+</html>
